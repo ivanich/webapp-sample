@@ -1,0 +1,29 @@
+
+
+Ajouter votre certificat au keystore :
+
+
+keytool -genkey -keystore keystore.jks -alias localhost -dname "CN=localhost,OU=Intelligents-ia" -keyalg "RSA" -sigalg "SHA1withRSA" -keysize 2048 -validity 3650 -storepass iia
+keytool -genkey -keystore keystore.jks -alias myhost.local -dname "CN=myhost.local,OU=Intelligents-ia" -keyalg "RSA" -sigalg "SHA1withRSA" -keysize 2048 -validity 3650 -storepass iia 
+
+
+Ajouter les proprietes suivantes a la JVM
+
+-Djavax.net.ssl.keyStore=${PATH}/keystore.jks
+-Djavax.net.ssl.trustStore=${PATH}/keystore.jks
+-Djavax.net.ssl.keyStorePassword=iia
+-Djavax.net.ssl.trustStorePassword=iia
+
+
+
+
+
+
+
+
+
+
+
+
+
+

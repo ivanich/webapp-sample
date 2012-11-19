@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>org.intelligents-ia</groupId>
 		<artifactId>intelligents-ia</artifactId>
-		<version>1.4.3</version>
+		<version>1.4.4</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.intelligents-ia.sample</groupId>
@@ -94,19 +94,19 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>${org.slf4j.version}</version>
-			<scope>runtime</scope>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${org.slf4j.version}</version>
-			<scope>runtime</scope>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.16</version>
-			<scope>runtime</scope>
+			<scope>provided</scope>
 		</dependency>
 		<!-- ******************************************************************* -->
 		<!-- TESTING SPRING FRAMEWORK -->
@@ -275,6 +275,7 @@
 				<version>6.1.25</version>
 				<configuration>
 					<contextPath>/</contextPath>
+					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<connectors>
 						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
 							<port>8080</port>
@@ -294,8 +295,6 @@
 					<jettyEnvXml>${project.basedir}/src/main/config/jetty.xml</jettyEnvXml>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<webApp>${project.build.directory}/${project.build.finalName}.war</webApp>
-					<webAppSourceDirectory>${project.build.directory}/${project.build.finalName}</webAppSourceDirectory>
-					<webXml>${project.build.directory}/${project.build.finalName}/WEB-INF/web.xml</webXml>
 					<userRealms>
 						<userRealm implementation="org.mortbay.jetty.security.HashUserRealm">
 							<name>Person Management</name>
