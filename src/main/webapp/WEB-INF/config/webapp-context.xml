@@ -1,44 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
-
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
 	<util:properties id="applicationProps"
-		location="/WEB-INF/config/application.properties" />
+		location="classpath:/META-INF/config/application.properties" />
 
-	<!-- Scans the classpath of this application for @Components to deploy as 
-		beans -->
-	<context:component-scan base-package="org.springframework.samples.mvc.basic" />
+	<!-- JSR-303 support will be detected on classpath and enabled automatically -->
+	<mvc:annotation-driven />
 
-    <!-- JSR-303 support will be detected on classpath and enabled automatically -->
-    <mvc:annotation-driven/>
-
-	<!-- Forwards requests to the "/" resource to the "welcome" view -->
-	<mvc:view-controller path="/" view-name="welcome" />
-	<!-- <mvc:default-servlet-handler default-servlet-name="myCustomDefaultServlet"/> -->
-
-	<!-- Configures Handler Interceptors -->
-	<mvc:interceptors>
-		<!-- Changes the locale when a 'locale' request parameter is sent; e.g. 
-			/?locale=de -->
-		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
-	</mvc:interceptors>
-
-	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
-		up static resources in the ${webappRoot}/resources/ directory -->
-	<mvc:resources
-		mapping="/resources-#{applicationProps['application.version']}/**"
-		location="/resources/, /WEB-INF/static/, classpath:/META-INF/web-root/"
-		cache-period="31556926" />
-
-	<!-- <spring:eval expression="@applicationProps['application.version']" 
-		var="applicationVersion"/> <spring:url value="/resources-{applicationVersion}" 
-		var="resourceUrl"> <spring:param name="applicationVersion" value="${applicationVersion}"/> 
-		</spring:url> <script src="${resourceUrl}/dojo/dojo.js" type="text/javascript"></script> -->
+	<!-- maps request URLs to Controller names -->
+	<bean
+		class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" />
 
 	<!-- Saves a locale change using a cookie -->
 	<bean id="localeResolver"
@@ -58,7 +38,5 @@
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-
-
 
 </beans>
