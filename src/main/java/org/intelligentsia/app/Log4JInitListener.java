@@ -1,4 +1,4 @@
-package org.iia;
+package org.intelligentsia.app;
 
 import java.io.FileNotFoundException;
 import java.net.MalformedURLException;

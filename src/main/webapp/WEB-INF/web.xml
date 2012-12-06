@@ -3,6 +3,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
+
+
 	<!-- Reads request input using UTF-8 encoding -->
 	<filter>
 		<filter-name>characterEncodingFilter</filter-name>
@@ -18,7 +20,7 @@
 	</filter>
 
 	<!-- multipart filter come here -->
-	
+
 	<!-- HTTP Method Conversion -->
 	<filter>
 		<filter-name>httpMethodFilter</filter-name>
@@ -28,7 +30,6 @@
 			<param-value>_method</param-value>
 		</init-param>
 	</filter>
-
 
 	<filter-mapping>
 		<filter-name>characterEncodingFilter</filter-name>
@@ -44,11 +45,17 @@
 	<servlet>
 		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- Configure DispatcherServlet to use AnnotationConfigWebApplicationContext 
+			instead of the default XmlWebApplicationContext -->
+		<init-param>
+			<param-name>contextClass</param-name>
+			<param-value>
+              org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+          </param-value>
+		</init-param>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>
-				/WEB-INF/config/webapp-context.xml
-			</param-value>
+			<param-value>org.intelligentsia.app.WebConfig</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>

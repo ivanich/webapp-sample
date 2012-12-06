@@ -213,7 +213,7 @@
 		<!-- ******************************************************************* -->
 		<dependency>
 			<groupId>cglib</groupId>
-			<artifactId>cglib</artifactId>
+			<artifactId>cglib-nodep</artifactId>
 			<version>2.2.2</version>
 		</dependency>
 		<!-- ******************************************************************* -->
@@ -325,6 +325,10 @@
 			<resource>
 				<directory>src/main/resources-filter</directory>
 				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
 			</resource>
 		</resources>
 		<pluginManagement>

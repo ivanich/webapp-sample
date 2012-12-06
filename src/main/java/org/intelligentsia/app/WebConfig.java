@@ -1,9 +1,10 @@
-package org.springframework.samples.mvc.basic.account;
+package org.intelligentsia.app;
 
 import javax.inject.Inject;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.core.env.Environment;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
  */
 @EnableWebMvc
 @Configuration
+@ImportResource( { "classpath*:/META-INF/config/webapp-context.xml" } )
 @ComponentScan(basePackages = {"org.springframework.samples.mvc.basic"})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
